@@ -10,7 +10,9 @@ Using **Object Oriented Programming** to build:
     ![example](/assets/rps.gif)
 
 - ticComp.py ---------------- Tic-Tac-Toe against Computer(Dumb)
+    
     ![example](/assets/comp.gif)
 
 - ticHuman.py --------------- Tic-Tac-Toe against Human
+    
     ![example](/assets/human.gif)

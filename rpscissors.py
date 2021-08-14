@@ -1,57 +1,82 @@
-
 import random
 
 """ROCK-PAPER-SCISSORS GAME"""
 
 
+# def play():
+#     intro()
+#     counter = 0
+#     while counter < 5:
+#         userPick = input("What do you pick? ").lower()
+#         while userPick not in ["rock", "paper", "scissors"]:
+#             userPick = input("What do you pick? ").lower()
+#         comPick = Player(userPick)
+#         print(comPick)
+#         gameDecider = comPick.choice()
+#         print(gameDecider)
+#         counter += 1
+
+# computer is also a player.
+
+
 class Player:
+    def __init__(self, pick):
+        self.option = ['rock', 'paper', 'scissors']
+        if pick in self.option:
+            self.choice = pick
 
-    def __init__(self, user):
-        value = ["rock", "paper", "scissors"]
-        self.user = user
-        self.comp = random.choice(value)
+    def return_choice(self):
+        return self.choice
 
-    def choice(self):
-        if self.comp == self.user:
+
+class Computer(Player):
+    def __init__(self):
+        super(Computer, self).__init__(self, )
+        self.choice = random.choice(self.option)
+
+
+class Game:
+    def __init__(self, pick):
+        self.player = Player(pick).return_choice()
+        self.computer = Computer().return_choice()
+
+    def game_play(self):
+        if self.computer == self.player:
             return "Draw"
 
-        elif self.comp == "rock":
-            if self.user != "paper":
+        elif self.computer == "rock":
+            if self.player != "paper":
                 return "Computer Wins"
             return "Gamer Wins"
 
-        elif self.comp == "paper":
-            if self.user != "scissors":
+        elif self.computer == "paper":
+            if self.player != "scissors":
                 return "Computer Wins"
             return "Gamer Wins"
 
-        elif self.comp == "scissors":
-            if self.user != "rock":
+        elif self.computer == "scissors":
+            if self.player != "rock":
                 return "Computer Wins"
             return "Gamer Wins"
-
-    def __str__(self):
-        return f"User's choice is {self.user}, while computer's choice is {self.comp}"
 
 
 def intro():
     print("""To play:
-           Enter rock, paper or scissors""")
-    print()
+           Enter rock, paper or scissors\n""")
 
 
 def play():
-    intro()
-    counter = 0
-    while counter < 5:
-        userPick = input("What do you pick? ").lower()
-        while userPick not in ["rock", "paper", "scissors"]:
-            userPick = input("What do you pick? ").lower()
-        comPick = Player(userPick)
-        print(comPick)
-        gameDecider = comPick.choice()
-        print(gameDecider)
-        counter += 1
+    # user = input('Enter your name: ')
+
+    user_pick = input('Enter your choice: ').lower()
+    while user_pick not in ['rock', 'paper', 'scissors']:
+        user_pick = input('Enter your choice: ')
+
+    game = Game(user_pick)
+    winner = game.game_play()
+
+    print(f"Computer's choice is {game.computer}")
+    print(winner)
 
 
 if __name__ == '__main__':
