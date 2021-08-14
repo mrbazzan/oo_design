@@ -1,6 +1,5 @@
-import random
 
-"""ROCK-PAPER-SCISSORS GAME"""
+import random
 
 
 class Play:
@@ -26,30 +25,33 @@ class Computer(Play):
 
 
 class Game:
-    def __init__(self, name, pick):
-        self.player = Player(name, pick)
+
+    """ROCK-PAPER-SCISSORS GAME PLAY"""
+
+    def __init__(self):
         self.computer = Computer()
-        self.player_choice = self.player.return_choice()
         self.comp_choice = self.computer.return_choice()
 
-    def game_play(self):
-        if self.comp_choice == self.player_choice:
+    def game_play(self, player):
+        player_choice = player.return_choice()
+        name = player.name
+        if self.comp_choice == player_choice:
             return "Draw"
 
         elif self.comp_choice == "rock":
-            if self.player_choice != "paper":
+            if player_choice != "paper":
                 return "Computer Wins"
-            return f"{self.player.name} Wins"
+            return f"{name} Wins"
 
         elif self.comp_choice == "paper":
-            if self.player_choice != "scissors":
+            if player_choice != "scissors":
                 return "Computer Wins"
-            return f"{self.player.name} Wins"
+            return f"{name} Wins"
 
         elif self.comp_choice == "scissors":
-            if self.player_choice != "rock":
+            if player_choice != "rock":
                 return "Computer Wins"
-            return f"{self.player.name} Wins"
+            return f"{name} Wins"
 
 
 def play():
@@ -63,8 +65,9 @@ def play():
         while user_pick not in ['rock', 'paper', 'scissors']:
             user_pick = input('Enter your choice: ')
 
-        game = Game(user, user_pick)
-        winner = game.game_play()
+        player = Player(user, user_pick)
+        game = Game()
+        winner = game.game_play(player)
 
         print(f"Computer's choice is {game.computer.choice}")
         print(winner + '\n')
