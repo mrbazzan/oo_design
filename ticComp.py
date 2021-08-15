@@ -79,12 +79,12 @@ class Move:
         return choose
 
     def randomMove(self):
-        myChoice = random.choice(self.value)
-        while myChoice not in self.value:
-            myChoice = random.choice(self.value)
-        if myChoice in self.value:
-            self.value.remove(myChoice)
-        return myChoice
+        my_choice = random.choice(self.value)
+        while my_choice not in self.value:
+            my_choice = random.choice(self.value)
+        if my_choice in self.value:
+            self.value.remove(my_choice)
+        return my_choice
 
 
 def intro():
