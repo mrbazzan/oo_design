@@ -57,6 +57,7 @@ def play():
                Enter rock, paper or scissors\n""")
 
     user = input('Enter your name: ')
+    print('\n')
     count = 0
     while count < 5:
         user_pick = input('Enter your choice: ').lower()
