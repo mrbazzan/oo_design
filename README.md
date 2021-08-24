@@ -1,7 +1,7 @@
 
 # OO Design
 
-    Games built with OOP programming
+    Designs built with OOP programming
    
 Using **Object Oriented Programming** to build:
     
@@ -16,7 +16,16 @@ Using **Object Oriented Programming** to build:
 - ticHuman.py --------------- Tic-Tac-Toe against Human
     
     ![example](/assets/human.gif)
+
+- stock.py ------------------ Stock Valuation 
     
+    `A Block of stock has a number of attributes, including a purchase price, purchase date, and number of
+    shares. Commonly, methods are needed to compute the total spent to buy the stock, and the current value
+    of the stock. A Position is the current ownership of a company reflected by all of the blocks of stock. A
+    Portfolio is a collection of Positions ; it has methods to compute the total value of all Blocks of stock.`
+    
+    `When we purchase stocks a little at a time, each Block has a different price. We want to compute the total
+    value of the entire set of Block s, plus an average purchase price for the set of Blocks.`
 
 ## NOTES
 
