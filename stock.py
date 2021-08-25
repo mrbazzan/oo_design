@@ -6,9 +6,7 @@ class StockBlock:
         self.shares = shares
 
     def __str__(self):
-        return "Date: {}\n" \
-               "Price: {}\n" \
-               "Shares: {}".format(self.date, self.purchase_price, self.shares)
+        return "StockBlock(date='{}', price={}, shares={})".format(self.date, self.purchase_price, self.shares)
 
     def get_purchase_value(self):
         return self.purchase_price * self.shares
@@ -70,3 +68,15 @@ portfolio = [
     Position("Eastman Kodak", "EK", blocksEK),
     Position("Caterpillar", "CAT", [StockBlock(purchDate='25-Oct-2001', purchPrice=42.84, shares=18)])
 ]
+
+
+def report_individual_block(list_of_position):
+    for position in list_of_position:
+        print('\n', end='')
+        print('For {}:'.format(position.name))
+        for blocks in position.blocks:
+            print(blocks)
+        print('Purchase Value of block: {}'.format(position.get_total_purchase_price))
+
+
+report_individual_block(portfolio)
