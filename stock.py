@@ -1,4 +1,7 @@
 
+from datetime import datetime as dt
+
+
 class StockBlock:
     def __init__(self, purchDate, purchPrice, shares):
         self.date = purchDate
@@ -14,10 +17,25 @@ class StockBlock:
     def get_sale_value(self, sale_price):
         return sale_price * self.shares
 
+    @staticmethod
+    def date_stamp(time):
+        return dt.strptime(time, '%d-%b-%Y').date()
+
+    def get_owned_for(self, sale_date, sign=True):
+        time_in_days = self.date_stamp(sale_date) - self.date_stamp(self.date)
+        if sign:
+            return time_in_days.days
+
+        return time_in_days.days/365.25
+
     def getROI(self, sale_price):
         return (self.get_sale_value(sale_price) - self.get_purchase_value()) / self.get_purchase_value
 
+    def get_annual_ROI(self, sale_price, sale_date):
+        return self.getROI(sale_price)/self.get_owned_for(sale_date, sign=False)
 
+
+# TODO: Add a `current_price` to Position, which can be used as `sale_price` for StockBlock's get_sale_value method
 class Position:
     def __init__(self, name, symbol, blocks):
         self.name = name
@@ -79,4 +97,10 @@ def report_individual_block(list_of_position):
         print('Purchase Value of block: {}'.format(position.get_total_purchase_price))
 
 
-report_individual_block(portfolio)
+def report_position_details(list_of_position):
+    for position in list_of_position:
+        print('Symbol: {}'.format(position.symbol))
+        print('Total Shares: {}'.format(position.get_total_shares))
+        print('Total value of Stock purchased: {}'.format(position.get_total_purchase_price))
+        print('Average price paid: {}'.format(position.get_total_purchase_price/position.get_total_shares))
+        print('\n', end='')
