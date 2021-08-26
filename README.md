@@ -27,6 +27,9 @@ Using **Object Oriented Programming** to build:
     `When we purchase stocks a little at a time, each Block has a different price. We want to compute the total
     value of the entire set of Block s, plus an average purchase price for the set of Blocks.`
 
+- dive_logging.py ---------------- Dive Logging and Surface Air Consumption Rate
+    
+    `The Surface Air Consumption Rate is used by SCUBA divers to predict the air consumption at a particular depth.`
 ## NOTES
 
 - When defining new instance variable in a subclass, it must start out doing everything the superclass does.
