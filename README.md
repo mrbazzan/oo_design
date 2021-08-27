@@ -17,6 +17,8 @@ Using **Object Oriented Programming** to build:
     
     ![example](/assets/human.gif)
 
+- dice.py ------------------- MultiDice games
+
 - stock.py ------------------ Stock Valuation 
     
     `A Block of stock has a number of attributes, including a purchase price, purchase date, and number of

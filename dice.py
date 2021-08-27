@@ -30,5 +30,21 @@ class Dice:
         return tuple([die.get_roll() for die in self.dice])
 
 
-d = Dice()
-print(d.get_roll_tuple())
+class MultiDice:
+    def __init__(self, dice):
+        self.dice = frozenset(dice)
+
+    def roll(self):
+        for die in self.dice:
+            die.roll()
+
+    def get_DICE(self):
+        return [die.get_roll() for die in self.dice]
+
+    def re_roll(self, *dice):
+        for die in dice:
+            if die in self.dice:
+                die.roll()
+
+    def score(self):
+        pass
