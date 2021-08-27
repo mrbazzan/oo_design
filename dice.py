@@ -48,3 +48,27 @@ class MultiDice:
 
     def score(self):
         pass
+
+    def match_DIE(self, die):
+        return self.match_VALUE(die.value)
+
+    def match_VALUE(self, number):
+        equal_set, unequal_set = set(), set()
+        for die in self.dice:
+            if die.value == number:
+                equal_set.add(die)
+            else:
+                unequal_set.add(die)
+        return {'equal-set': equal_set, 'unequal-set': unequal_set}
+
+
+die_one, die_two, die_three = Die(), Die(), Die()
+a = MultiDice([die_one, die_two, die_three])
+
+print(a.match_DIE(die_one))
+
+# print(die_three)
+# print(a.get_DICE())
+# a.roll()
+#
+# a.reroll(die_two, die_three)
