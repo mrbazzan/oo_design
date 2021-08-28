@@ -62,7 +62,10 @@ class MultiDice:
         return {'equal-set': equal_set, 'unequal-set': unequal_set}
 
     def n_of_a_kind(self, n):
-        pass
+        for die in self.dice:
+            if len(self.match_DIE(die)['equal-set']) == n:
+                return die
+        return None
 
     def large_straight(self):
         arranged_dice = sorted(self.get_DICE())
