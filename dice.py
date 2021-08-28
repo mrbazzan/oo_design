@@ -61,14 +61,19 @@ class MultiDice:
                 unequal_set.add(die)
         return {'equal-set': equal_set, 'unequal-set': unequal_set}
 
+    def n_of_a_kind(self, n):
+        pass
 
-die_one, die_two, die_three = Die(), Die(), Die()
-a = MultiDice([die_one, die_two, die_three])
+    def large_straight(self):
+        arranged_dice = sorted(self.get_DICE())
 
-print(a.match_DIE(die_one))
+        for i in range(len(arranged_dice)-1):
+            if arranged_dice[i] + 1 != arranged_dice[i+1]:
+                return False
+        return True
 
-# print(die_three)
-# print(a.get_DICE())
-# a.roll()
-#
-# a.reroll(die_two, die_three)
+    def small_straight(self):
+        pass
+
+    def chance(self):
+        return sum(self.get_DICE())
