@@ -67,9 +67,6 @@ class MultiDice:
                 return die
         return None
 
-    def arranged_dice(self):
-        return
-
     def large_straight(self):
         arranged_dice = sorted(self.get_DICE())
 
@@ -93,3 +90,20 @@ class MultiDice:
 
     def chance(self):
         return sum(self.get_DICE())
+
+
+class ScoreGame(MultiDice):
+    def score(self):
+        pass
+        # score = []
+        # for i in [5]:
+        #     if self.n_of_a_kind(i):
+        # #         score.append(())
+        # # self.n_of_a_kind(5)
+        # self.large_straight()
+        # self.small_straight()
+
+
+class PointGame(MultiDice):
+    def score(self):
+        pass
