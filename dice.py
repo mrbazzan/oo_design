@@ -67,6 +67,9 @@ class MultiDice:
                 return die
         return None
 
+    def arranged_dice(self):
+        return
+
     def large_straight(self):
         arranged_dice = sorted(self.get_DICE())
 
@@ -76,7 +79,17 @@ class MultiDice:
         return True
 
     def small_straight(self):
-        pass
+        arranged_dice = list(set(self.get_DICE()))
+        count = 0
+
+        for i in range(len(arranged_dice) - 1):
+            if arranged_dice[i] + 1 == arranged_dice[i+1]:
+                count += 1
+                if count == 3:
+                    return True
+            else:
+                count = 0
+        return False
 
     def chance(self):
         return sum(self.get_DICE())
