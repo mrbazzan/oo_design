@@ -32,6 +32,13 @@ Using **Object Oriented Programming** to build:
 - dive_logging.py ---------------- Dive Logging and Surface Air Consumption Rate
     
     `The Surface Air Consumption Rate is used by SCUBA divers to predict the air consumption at a particular depth.`
+
+- rational_number.py ---------------- Rational Numbers
+
+    `A class that saves a rational number and perform arithmetic operations on this number or between two rational numbers.
+    
+    The values are returned in proper fraction form e.g 4/5, 6/7 et. c.`
+
 ## NOTES
 
 - When defining new instance variable in a subclass, it must start out doing everything the superclass does.

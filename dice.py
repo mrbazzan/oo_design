@@ -94,16 +94,23 @@ class MultiDice:
 
 class ScoreGame(MultiDice):
     def score(self):
-        pass
-        # score = []
-        # for i in [5]:
-        #     if self.n_of_a_kind(i):
-        # #         score.append(())
-        # # self.n_of_a_kind(5)
-        # self.large_straight()
-        # self.small_straight()
+        score = []
+        for i in [5]:
+            if self.n_of_a_kind(i):
+                score.append(())
+        self.n_of_a_kind(5)
+        self.large_straight()
+        self.small_straight()
 
 
 class PointGame(MultiDice):
     def score(self):
         pass
+
+
+die_one, die_two, die_three, die_four, die_five = Die(), Die(), Die(), Die(), Die()
+a = ScoreGame([die_one, die_two, die_three, die_four, die_five])
+
+a.roll()
+print(a.get_DICE())
+print(a.score())
