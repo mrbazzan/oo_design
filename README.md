@@ -36,8 +36,14 @@ Using **Object Oriented Programming** to build:
 - rational_number.py ---------------- Rational Numbers
 
     `A class that saves a rational number and perform arithmetic operations on this number or between two rational numbers.
-    
     The values are returned in proper fraction form e.g 4/5, 6/7 et. c.`
+
+
+- card.py ---------------- Playing Cards and Deck
+
+    `A class that saves a card(rank: ace to king; suit: clubs to spades). There is also a deck class from which the card
+    is shuffled and dealt.
+    This cards can be manipulated to play games such as blackjack, poker et.c .`
 
 ## NOTES
 
