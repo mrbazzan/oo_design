@@ -77,3 +77,22 @@ class BlackJack(Card):
         elif self.rank in (11, 12, 13):
             return 10
         return self.rank
+
+
+# Scoring Blackjack
+# The objective of blackjack is to accumulate HAND with <= 21 points.
+class Hand:
+    def __init__(self, *cards):
+        self.cards = list(cards[:2])
+
+    def __str__(self):
+        return ','.join(map(str, self.cards))
+
+    def hard_total(self):
+        return sum([card.get_hard_value() for card in self.cards])
+
+    def soft_total(self):
+        ...
+
+    def add(self, card):
+        self.cards.append(card)
