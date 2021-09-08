@@ -1,11 +1,11 @@
 
 import random
 
+
 # A card has a rank—ace, two to ten, jack, queen and king—and a suit—clubs, diamonds, hearts, spades.
 
 
 class Card:
-
     rank_converter = {1: 'A', 11: 'J', 12: 'Q', 13: 'K'}
 
     def __init__(self, rank, suit):
@@ -55,7 +55,7 @@ class Card:
 
 class Deck:
     def __init__(self):
-        self.deck = [str(rank)+suit for suit in ('C', 'D', 'H', 'S') for rank in range(1, 14)]
+        self.deck = [str(rank) + suit for suit in ('C', 'D', 'H', 'S') for rank in range(1, 14)]
 
     def deal(self):
         random.shuffle(self.deck)
@@ -63,14 +63,17 @@ class Deck:
             yield card
 
 
-deck = Deck()
-dealer = deck.deal()
+class BlackJack(Card):
+    # cards in blackjack have a point value.
+    # Aces are 1 point(i.e total is called `hard total`) or 11 points(i.e soft total).
+    def get_hard_value(self):
+        if self.rank in (11, 12, 13):
+            return 10
+        return self.rank
 
-
-hand1, hand2 = list(), list()
-for i in range(5):
-    hand1.append(next(dealer))
-    hand2.append(next(dealer))
-
-print(hand1)
-print(hand2)
+    def get_soft_value(self):
+        if self.rank == 1:
+            return 11
+        elif self.rank in (11, 12, 13):
+            return 10
+        return self.rank
