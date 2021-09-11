@@ -63,9 +63,9 @@ class Deck:
             yield card
 
 
+# cards in blackjack have a point value.
+# Aces are 1 point(i.e total is called `hard total`) or 11 points(i.e soft total).
 class BlackJack(Card):
-    # cards in blackjack have a point value.
-    # Aces are 1 point(i.e total is called `hard total`) or 11 points(i.e soft total).
     def get_hard_value(self):
         if self.rank in (11, 12, 13):
             return 10
@@ -91,8 +91,28 @@ class Hand:
     def hard_total(self):
         return sum([card.get_hard_value() for card in self.cards])
 
+    # def soft_total(self):
+    #     soft_set = []
+    #     cards = self.cards
+    #     for card in cards:
+    #         if card.get_soft_value() != card.get_hard_value():
+    #             soft_set = card
+    #             break
+    #
+    #     if not soft_set:
+    #         return self.hard_total()
+    #
+    #     cards.remove(soft_set)
+    #     return soft_set.get_soft_value() + sum(card.get_hard_value() for card in cards)
+
     def soft_total(self):
-        ...
+        ace = [(True, card) if card.rank == 1 else (False, card) for card in sorted(self.cards, key=lambda x: x.rank)]
+        condition, cards = list(zip(*ace))
+
+        if not any(condition):
+            return self.hard_total()
+
+        return cards[0].get_soft_value() + sum(card.get_hard_value() for card in cards[1:])
 
     def add(self, card):
         self.cards.append(card)
