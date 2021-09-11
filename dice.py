@@ -106,11 +106,3 @@ class ScoreGame(MultiDice):
 class PointGame(MultiDice):
     def score(self):
         pass
-
-
-die_one, die_two, die_three, die_four, die_five = Die(), Die(), Die(), Die(), Die()
-a = ScoreGame([die_one, die_two, die_three, die_four, die_five])
-
-a.roll()
-print(a.get_DICE())
-print(a.score())
