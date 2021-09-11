@@ -55,7 +55,7 @@ class Card:
 
 class Deck:
     def __init__(self):
-        self.deck = [str(rank) + suit for suit in ('C', 'D', 'H', 'S') for rank in range(1, 14)]
+        self.deck = [(rank, suit) for suit in ('C', 'D', 'H', 'S') for rank in range(1, 14)]
 
     def deal(self):
         random.shuffle(self.deck)
@@ -116,3 +116,12 @@ class Hand:
 
     def add(self, card):
         self.cards.append(card)
+
+
+class Poker:
+    def __init__(self, cards):
+        self.cards = cards
+        self.rankCount = {}
+
+    def straight(self):
+        pass
