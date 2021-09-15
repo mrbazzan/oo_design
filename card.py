@@ -118,10 +118,30 @@ class Hand:
         self.cards.append(card)
 
 
-class Poker:
+class PokerHand:
     def __init__(self, cards):
         self.cards = cards
         self.rankCount = {}
 
+    def straight_flush(self):
+        if self.flush():
+            for card in self.cards:
+                print(card.rank)
+
     def straight(self):
-        pass
+        cards = sorted(self.cards, key=lambda x: x.rank)
+        for card in range(len(cards)-1):
+            if cards[card].rank == 1 and cards[card+1].rank == 10:
+                continue
+            if (cards[card].rank + 1) != cards[card + 1].rank:
+                return False
+        return True
+
+    def flush(self):
+        for card in range(len(self.cards)-1):
+            if self.cards[card].suit != self.cards[card + 1].suit:
+                return False
+        return True
+
+    def high_card(self):
+        return max(self.cards, key=lambda x: x.rank)
