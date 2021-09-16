@@ -1,4 +1,3 @@
-
 import random
 
 
@@ -120,28 +119,58 @@ class Hand:
 
 class PokerHand:
     def __init__(self, cards):
-        self.cards = cards
+        self.cards = sorted(cards, key=lambda x: x.rank)
         self.rankCount = {}
 
     def straight_flush(self):
-        if self.flush():
-            for card in self.cards:
-                print(card.rank)
+        if self.flush() and self.straight():
+            return True
+        return False
+
+    @staticmethod
+    def _full_house_checker(count):
+        if count == 2 or count == 3:
+            return True
+
+    def full_house(self):
+        count = 1
+        for card in range(len(self.cards) - 1):
+            if self.cards[card].rank == self.cards[card + 1].rank:
+                count += 1
+            else:
+                if self._full_house_checker(count):
+                    count = 1
+                else:
+                    return False
+        return self._full_house_checker(count)
 
     def straight(self):
-        cards = sorted(self.cards, key=lambda x: x.rank)
-        for card in range(len(cards)-1):
-            if cards[card].rank == 1 and cards[card+1].rank == 10:
+        for card in range(len(self.cards) - 1):
+            if self.cards[card].rank == 1 and self.cards[card + 1].rank == 10:
                 continue
-            if (cards[card].rank + 1) != cards[card + 1].rank:
+            if (self.cards[card].rank + 1) != self.cards[card + 1].rank:
                 return False
         return True
 
     def flush(self):
-        for card in range(len(self.cards)-1):
+        for card in range(len(self.cards) - 1):
             if self.cards[card].suit != self.cards[card + 1].suit:
                 return False
         return True
+
+    def three_of_a_kind(self):
+        count = 1
+        the_count = []
+        for card in range(len(self.cards) - 1):
+            if self.cards[card].rank == self.cards[card + 1].rank:
+                count += 1
+            else:
+                the_count.append(count)
+                count = 1 if count == 1 or count == 3 else 4
+        the_count.append(count)
+        if sorted(the_count) == [1, 1, 3]:
+            return True
+        return False
 
     def high_card(self):
         return max(self.cards, key=lambda x: x.rank)
