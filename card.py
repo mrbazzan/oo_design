@@ -120,7 +120,7 @@ class Hand:
 
 class PokerHand:
     def __init__(self, cards):
-        self.cards = sorted(cards, key=lambda x: x.rank)
+        self.cards = cards
         self.rankCount = {}
 
     def straight_flush(self):
@@ -129,26 +129,28 @@ class PokerHand:
         return False
 
     def four_of_a_kind(self):
-        if self._checker() == [4, 1]:
+        if self.matches() == (1, 4):
             return True
         return False
 
-    def _checker(self):
-        the_count = {}
+    def matches(self):
+        self.rankCount = {}
         for card in self.cards:
-            if card.rank not in the_count:
-                the_count[card.rank] = 1
+            if card.rank not in self.rankCount:
+                self.rankCount[card.rank] = 1
             else:
-                the_count[card.rank] += 1
+                self.rankCount[card.rank] += 1
 
-        return the_count.values()
+        return tuple(sorted(self.rankCount.values()))
 
     def full_house(self):
-        if self._checker() == [3, 2]:
+        if self.matches() == (2, 3):
             return True
         return False
 
     def straight(self):
+        self.sort_by_rank()
+
         for card in range(len(self.cards) - 1):
             if self.cards[card].rank == 1 and self.cards[card + 1].rank == 10:
                 continue
@@ -163,7 +165,7 @@ class PokerHand:
         return True
 
     def three_of_a_kind(self):
-        if self._checker() == [3, 1, 1]:
+        if self.matches() == (1, 1, 3):
             return True
         return False
 
@@ -171,11 +173,17 @@ class PokerHand:
         return max(self.cards, key=lambda x: x.rank)
 
     def pair(self):
-        if len(self._checker()) == 4:
+        if len(self.matches()) == 4:
             return True
         return False
 
     def two_pair(self):
-        if self._checker() == [2, 2, 1]:
+        if self.matches() == (1, 2, 2):
             return True
         return False
+
+    def sort_by_rank(self):
+        self.cards = sorted(self.cards)
+
+    def sort_by_match(self):
+        pass
