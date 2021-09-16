@@ -128,6 +128,11 @@ class PokerHand:
             return True
         return False
 
+    def four_of_a_kind(self):
+        if self._checker() == [4, 1]:
+            return True
+        return False
+
     def _checker(self):
         the_count = {}
         for card in self.cards:
@@ -139,7 +144,7 @@ class PokerHand:
         return the_count.values()
 
     def full_house(self):
-        if len(self._checker()) == 2:
+        if self._checker() == [3, 2]:
             return True
         return False
 
@@ -158,9 +163,19 @@ class PokerHand:
         return True
 
     def three_of_a_kind(self):
-        if len(self._checker()) == 3:
+        if self._checker() == [3, 1, 1]:
             return True
         return False
 
     def high_card(self):
         return max(self.cards, key=lambda x: x.rank)
+
+    def pair(self):
+        if len(self._checker()) == 4:
+            return True
+        return False
+
+    def two_pair(self):
+        if self._checker() == [2, 2, 1]:
+            return True
+        return False
