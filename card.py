@@ -183,7 +183,16 @@ class PokerHand:
         return False
 
     def sort_by_rank(self):
-        self.cards = sorted(self.cards)
+        self.cards = sorted(self.cards, key=lambda x: x.rank)
 
     def sort_by_match(self):
-        pass
+        for card in self.cards:
+            card.match_count = self.rankCount[card.rank]
+
+        self.cards = sorted(self.cards, key=lambda x: x.match_count)
+
+    def sort_by_match_and_rank(self):
+        for card in self.cards:
+            card.match_count = self.rankCount[card.rank]
+
+        self.cards = sorted(self.cards, key=lambda x: (x.match_count, x.rank))
