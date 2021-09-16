@@ -1,3 +1,4 @@
+
 import random
 
 
@@ -127,22 +128,20 @@ class PokerHand:
             return True
         return False
 
-    @staticmethod
-    def _full_house_checker(count):
-        if count == 2 or count == 3:
-            return True
+    def _checker(self):
+        the_count = {}
+        for card in self.cards:
+            if card.rank not in the_count:
+                the_count[card.rank] = 1
+            else:
+                the_count[card.rank] += 1
+
+        return the_count.values()
 
     def full_house(self):
-        count = 1
-        for card in range(len(self.cards) - 1):
-            if self.cards[card].rank == self.cards[card + 1].rank:
-                count += 1
-            else:
-                if self._full_house_checker(count):
-                    count = 1
-                else:
-                    return False
-        return self._full_house_checker(count)
+        if len(self._checker()) == 2:
+            return True
+        return False
 
     def straight(self):
         for card in range(len(self.cards) - 1):
@@ -159,16 +158,7 @@ class PokerHand:
         return True
 
     def three_of_a_kind(self):
-        count = 1
-        the_count = []
-        for card in range(len(self.cards) - 1):
-            if self.cards[card].rank == self.cards[card + 1].rank:
-                count += 1
-            else:
-                the_count.append(count)
-                count = 1 if count == 1 or count == 3 else 4
-        the_count.append(count)
-        if sorted(the_count) == [1, 1, 3]:
+        if len(self._checker()) == 3:
             return True
         return False
 
