@@ -43,7 +43,9 @@ class Sample:
             return (arg_sample[length // 2] + arg_sample[(length // 2) - 1]) / 2
 
     def variance(self):
-        pass
+        if len(self.args) < 2:
+            return
+        return sum(map(lambda x: (x-self.mean())**2, self.args))/(len(self.args)-1)
 
     def stdev(self):
-        pass
+        return self.variance() ** 2
