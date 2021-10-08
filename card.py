@@ -58,7 +58,6 @@ class Deck:
         self.deck = [(rank, suit) for suit in ('C', 'D', 'H', 'S') for rank in range(1, 14)]
 
     def deal(self):
-        random.shuffle(self.deck)
         for card in self.deck:
             yield card
 
